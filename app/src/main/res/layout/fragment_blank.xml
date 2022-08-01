@@ -17,10 +17,10 @@
         android:layout_height="50dp"
         android:id = "@+id/content_time"
         />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:id = "@+id/content_content"
-        />
 
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id ="@+id/webview"
+        />
 </LinearLayout>

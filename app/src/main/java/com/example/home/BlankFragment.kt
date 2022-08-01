@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -16,21 +17,21 @@ class ContentFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
         val view:View = inflater.inflate((R.layout.fragment_blank),container,false)
         displayContent(view)
         return view
     }
-    private lateinit var viewModel:ViewModel
+    private lateinit var viewModel:WeiViewModel
     private fun displayContent(view:View) {
-        val content:TextView = view.findViewById(R.id.content_content)
+        val content:WebView = view.findViewById(R.id.webview)
         val time:TextView = view.findViewById(R.id.content_time)
         val title:TextView = view.findViewById(R.id.content_title)
-        viewModel = ViewModelProvider(requireActivity())[ViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[WeiViewModel::class.java]
         viewModel.news.observe(viewLifecycleOwner,Observer{
-            content.text = it.content.toString()
-            time.text = it.time.toString()
+            time.text = it.niceDate.toString()
             title.text = it.title.toString()
+            content.loadUrl(it.link.toString())
         })
     }
 }

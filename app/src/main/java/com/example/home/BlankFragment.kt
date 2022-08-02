@@ -22,12 +22,12 @@ class ContentFragment : Fragment() {
         displayContent(view)
         return view
     }
-    private lateinit var viewModel:WeiViewModel
+    private lateinit var viewModel:ViewModel
     private fun displayContent(view:View) {
         val content:WebView = view.findViewById(R.id.webview)
         val time:TextView = view.findViewById(R.id.content_time)
         val title:TextView = view.findViewById(R.id.content_title)
-        viewModel = ViewModelProvider(requireActivity())[WeiViewModel::class.java]
+        viewModel = ViewModelProvider(requireActivity())[ViewModel::class.java]
         viewModel.news.observe(viewLifecycleOwner,Observer{
             time.text = it.niceDate.toString()
             title.text = it.title.toString()
